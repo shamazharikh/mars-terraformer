@@ -7,8 +7,8 @@ class TerraformMars(gym.Env):
     def __init__(self, render_model=None, game_version="base", num_players=5):
         self.terraforming_rating = [20 for i in range(num_players)]
         if game_version=="base":
-            board = ""
+            board = 
 
     def get_board(self, board_path):
-        
+
 
