@@ -24,9 +24,11 @@ echo $COMMIT_SHA >&2
 
 TAG_PREFIX=$( [ $BRANCH == 'main' ] && echo "main" || echo "dev" )
 
-{ docker buildx build -f Dockerfile \
-    --cache-from type=local,src=/mnt/d/GithubCache \
-    --cache-to type=local,dest=/mnt/d/GithubCache \
+# { docker buildx build -f Dockerfile \
+#     --cache-from type=local,src=/mnt/d/GithubCache \
+#     --cache-to type=local,dest=/mnt/d/GithubCache \
+#     -t mazharshaikh/mars-terraformer:$TAG_PREFIX-$COMMIT_SHA . ; } >&2
+{ docker build -f Dockerfile \
     -t mazharshaikh/mars-terraformer:$TAG_PREFIX-$COMMIT_SHA . ; } >&2
 if [ $BRANCH == "main" ];
 then
