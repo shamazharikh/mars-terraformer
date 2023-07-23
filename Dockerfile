@@ -1,4 +1,4 @@
-FROM nvcr.io/nvidia/pytorch:23.06-py3
+FROM pytorch/pytorch:latest
 RUN export DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update 
