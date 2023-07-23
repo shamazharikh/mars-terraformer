@@ -24,7 +24,9 @@ echo $COMMIT_SHA >&2
 
 TAG_PREFIX=$( [ $BRANCH == 'main' ] && echo "main" || echo "dev" )
 
-{ docker build -f Dockerfile -t mars-terraformer:$TAG_PREFIX-$COMMIT_SHA . ; } >&2
+{ docker buildx build -f Dockerfile \
+    --output type=docker \
+    -t mars-terraformer:$TAG_PREFIX-$COMMIT_SHA . ; } >&2
 if [ $BRANCH == "main" ];
 then
     docker push mars-terraformer:$TAG_PREFIX-$COMMIT_SHA
