@@ -1,0 +1,77 @@
+# This workflow does the following:
+# 1. Checks if requirements files and Dockerfiles have changed (compared to master)
+# 2. If they have, build a new docker and store it in the ECR ci-repo
+# 3. If not, then use the latest built docker from master
+# 4. Run linting, testing, and black in the selected docker
+name: Python workflow
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: linux
+
+    steps:
+      # See here:
+      # https://github.com/actions/checkout/issues/760
+      - name: work around permission issue
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Extract branch name
+        shell: bash
+        run: |
+          branch=$(bash ci_scripts/get-github-branch.sh | tail -n 1)
+          echo "branch=$branch" >> $GITHUB_OUTPUT
+        id: extract-branch
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Build Docker
+        id: build-docker
+        env:
+          BRANCH: ${{ steps.extract-branch.outputs.branch }}
+        run: |
+          echo "Building Docker"
+          DOCKER_IMG=$(bash ci_scripts/build-docker.sh $BRANCH | tail -n 1)
+          echo "DOCKER=$DOCKER_IMG" >> $GITHUB_ENV
+
+      - name: Check formatting with black
+        run: |
+          bash ci_scripts/format-black.sh ${{ env.DOCKER }}
+
+      # - name: Check for unused imports
+      #   run: |
+      #     bash ci_scripts/check-unused-imports.sh ${{ env.DOCKER }}
+
+      # - name: Check isort
+      #   run: |
+      #     bash ci_scripts/isort-check.sh ${{ env.DOCKER }}
+
+      # - name: Check typing with mypy
+      #   run: |
+      #     bash ci_scripts/mypy-check.sh ${{ env.DOCKER }}
+
+      # - name: Analysing the code with pylint
+      #   run: |
+      #     bash ci_scripts/pylint.sh ${{ env.DOCKER }}
+      # - name: Test with pytest
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   run: |
+      #     bash ci_scripts/unit-tests.sh ${{ env.DOCKER }}
