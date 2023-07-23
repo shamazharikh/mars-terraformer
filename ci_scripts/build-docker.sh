@@ -27,19 +27,19 @@ TAG_PREFIX=$( [ $BRANCH == 'main' ] && echo "main" || echo "dev" )
 { docker buildx build -f Dockerfile \
     --cache-from type=local,src=/mnt/d/GithubCache \
     --cache-to type=local,dest=/mnt/d/GithubCache \
-    -t mars-terraformer:$TAG_PREFIX-$COMMIT_SHA . ; } >&2
+    -t mazharshaikh/mars-terraformer:$TAG_PREFIX-$COMMIT_SHA . ; } >&2
 if [ $BRANCH == "main" ];
 then
-    docker push mars-terraformer:$TAG_PREFIX-$COMMIT_SHA
-    docker tag mars-terraformer:$TAG_PREFIX-$COMMIT_SHA mars-terraformer:latest
-    docker push mars-terraformer:latest
+    docker push mazharshaikh/mars-terraformer:$TAG_PREFIX-$COMMIT_SHA
+    docker tag mazharshaikh/mars-terraformer:$TAG_PREFIX-$COMMIT_SHA mazharshaikh/mars-terraformer:latest
+    docker push mazharshaikh/mars-terraformer:latest
 fi
 
 printf "\n\n"
-echo mars-terraformer:$TAG_PREFIX-$COMMIT_SHA
+echo mazharshaikh/mars-terraformer:$TAG_PREFIX-$COMMIT_SHA
 if [ $BRANCH == "master" ];
 then
-    echo mars-terraformer:latest
+    echo mazharshaikh/mars-terraformer:latest
 fi
 
 TAG=$2
@@ -47,7 +47,7 @@ if [ -n "$TAG" ];
 then
     echo "Tag used" >&2
     echo $TAG >&2
-    docker tag mars-terraformer:$TAG_PREFIX-$COMMIT_SHA mars-terraformer:$TAG
-    docker push mars-terraformer:$TAG
-    echo mars-terraformer:$TAG
+    docker tag mazharshaikh/mars-terraformer:$TAG_PREFIX-$COMMIT_SHA mazharshaikh/mars-terraformer:$TAG
+    docker push mazharshaikh/mars-terraformer:$TAG
+    echo mazharshaikh/mars-terraformer:$TAG
 fi
