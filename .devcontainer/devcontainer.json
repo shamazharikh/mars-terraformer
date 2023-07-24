@@ -2,11 +2,10 @@
 // README at: https://github.com/devcontainers/templates/tree/main/src/anaconda
 {
 	"name": "Pytorch",
-	"build": { 
+	"build": {
 		"context": "..",
 		"dockerfile": "../Dockerfile"
 	},
-
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	"customizations": {
 		// Configure properties specific to VS Code.
@@ -18,6 +17,18 @@
 				"[makefile]": {
 					"editor.insertSpaces": false,
 					"editor.detectIndentation": true
+				},
+				"isort.args": [
+					"-l",
+					"79",
+					"--profile",
+					"black",
+					"--src",
+					"${workspaceFolder}"
+				],
+				"isort.check": true,
+				"editor.codeActionsOnSave": {
+					"source.organizeImports": true
 				}
 			},
 			// Add the IDs of extensions you want installed when the container is created.
@@ -30,15 +41,11 @@
 			]
 		}
 	},
-
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
-
 	// Use 'postCreateCommand' to run commands after the container is created.
-
 	// Configure tool-specific properties.
 	// "customizations": {},
-
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
 	"remoteUser": "root",
 	"postStartCommand": "bash ./.devcontainer/postCreateCommand.sh"
