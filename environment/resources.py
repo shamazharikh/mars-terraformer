@@ -2,8 +2,9 @@
 This module contains definitions of resource types available and 
 a dataclass for denoting a resource production
 """
-from enum import IntEnum
+import typing
 from dataclasses import dataclass
+from enum import IntEnum
 
 
 class ResourceType(IntEnum):
@@ -20,11 +21,18 @@ class ResourceType(IntEnum):
 
 
 @dataclass
+class ConditionalResource:
+    """
+    ResourceType that is conditioned on game state
+    """
+    counter_func: typing.Callable
+
+@dataclass
 class ResouceProduction:
     """
     Resource Production
     """
 
     resource_type: ResourceType
-    value: int
+    value: typing.Union[int, ConditionalResource]
     is_global: bool
