@@ -14,3 +14,4 @@ class BaseCard:
     tags: typing.Optional[typing.List[TagType]]
     name: str
     production: typing.Optional[typing.List[ResouceProduction]]
+    victory_points: typing.Optional[int]
