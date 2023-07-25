@@ -1,14 +1,18 @@
+"""
+Defines the game environment
+"""
 import json
 from pathlib import Path
-from typing import Any, SupportsFloat
 
 import gymnasium as gym
-from gymnasium.
 
 DATA_PATH = Path(__file__) / "data" / "terraformingmars"
 
 
 class TerraformMars(gym.Env):
+    """
+    Subclasses gym Env
+    """
     metadata = {
         "render_modes": ["human", "rbg_array", "vector"],
         "render_fps": 4,
@@ -20,11 +24,14 @@ class TerraformMars(gym.Env):
         self.game_version = game_version
 
     def get_board(self, board_path: str):
-        board_data = json.read(board_path)
+        """
+        Gets board data
+        """
+        board_data = json.load(board_path)
         return board_data
 
     def render(self) -> None:
         pass
 
-    def step(self):
+    def step(self, action):
         pass
