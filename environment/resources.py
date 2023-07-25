@@ -25,7 +25,9 @@ class ConditionalResource:
     """
     ResourceType that is conditioned on game state
     """
+
     counter_func: typing.Callable
+
 
 @dataclass
 class ResouceProduction:

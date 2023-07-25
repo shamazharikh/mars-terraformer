@@ -12,6 +12,7 @@ class BoardConfig:
     """
     Define config variables dealing with board data
     """
+
     dir_path: str
 
 
@@ -20,4 +21,5 @@ class MarsConfig(YAMLWizard):
     """
     Define config variables for the terraforming mars game
     """
+
     board_config: BoardConfig

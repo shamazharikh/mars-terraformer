@@ -13,6 +13,7 @@ class TerraformMars(gym.Env):
     """
     Subclasses gym Env
     """
+
     metadata = {
         "render_modes": ["human", "rbg_array", "vector"],
         "render_fps": 4,
