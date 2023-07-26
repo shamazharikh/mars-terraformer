@@ -1,2 +1,2 @@
 BoardConfig:
-  DirPath: /workspaces/mars-terraformer/data/terraformingmars/boards
+  DirPath: /app/data/terraformingmars/boards
