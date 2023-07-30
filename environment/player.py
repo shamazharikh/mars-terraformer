@@ -33,7 +33,9 @@ class BasePlayer:
             ) == len(RESOURCE_LIST):
                 self.resource_production = {
                     r_type: ResouceProduction(r_type, r_init, is_global=False)
-                    for r_type, r_init in zip(RESOURCE_LIST, resource_productions_inits)
+                    for r_type, r_init in zip(
+                        RESOURCE_LIST, resource_productions_inits
+                    )
                 }
             else:
                 raise ValueError("incorrect Player init")
@@ -44,10 +46,12 @@ class BasePlayer:
             ]
         if resource_inits:
             if isinstance(resource_inits, int):
-                self.resources = {r_type: resource_inits for r_type in RESOURCE_LIST}
-            elif isinstance(resource_inits, list) and len(resource_inits) == len(
-                RESOURCE_LIST
-            ):
+                self.resources = {
+                    r_type: resource_inits for r_type in RESOURCE_LIST
+                }
+            elif isinstance(resource_inits, list) and len(
+                resource_inits
+            ) == len(RESOURCE_LIST):
                 self.resources = {
                     r_type: r_init
                     for r_type, r_init in zip(RESOURCE_LIST, resource_inits)
