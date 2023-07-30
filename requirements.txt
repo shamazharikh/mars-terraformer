@@ -2,3 +2,4 @@ gymnasium==0.29
 black
 dataclass-wizard
 pytest
+isort

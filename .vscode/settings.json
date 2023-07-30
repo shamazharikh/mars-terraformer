@@ -3,5 +3,22 @@
         "editor.defaultFormatter": "ms-python.black-formatter"
     },
     "python.formatting.provider": "none",
-    "black-formatter.importStrategy": "fromEnvironment"
+    "editor.formatOnSave": true,
+    "files.insertFinalNewline": true,
+    "[makefile]": {
+        "editor.insertSpaces": false,
+        "editor.detectIndentation": true
+    },
+    "isort.args": [
+        "-l",
+        "79",
+        "--profile",
+        "black",
+        "--src",
+        "${workspaceFolder}"
+    ],
+    "isort.check": true,
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": true
+    }
 }
