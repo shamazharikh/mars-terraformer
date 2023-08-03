@@ -21,5 +21,8 @@
     "editor.codeActionsOnSave": {
         "source.organizeImports": true
     },
-    "files.autoSave": "afterDelay"
+    "files.autoSave": "afterDelay",
+    "cSpell.words": [
+        "terraforming"
+    ]
 }

@@ -40,7 +40,7 @@ class ConditionalResource:
 
 
 @dataclass
-class ResouceProduction:
+class ResourceProduction:
     """
     Resource Production
     """

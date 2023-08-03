@@ -3,8 +3,11 @@ RUN export DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get install -y git
 
-ENV PYTHONPATH /workspace
+ADD . /app
+ENV PYTHONPATH /app
 
-WORKDIR /workspace
+WORKDIR /app
 ADD ./requirements.txt .
 RUN pip install -r requirements.txt
+
+

@@ -1,9 +1,9 @@
 """
-Module to define classes to track player information and behaviour
+Module to define classes to track player information and behavior
 """
 import typing
 
-from resources import RESOURCE_LIST, ResouceProduction
+from resources import RESOURCE_LIST, ResourceProduction
 
 
 class BasePlayer:
@@ -23,7 +23,7 @@ class BasePlayer:
         if resource_productions_inits:
             if isinstance(resource_productions_inits, int):
                 self.resource_production = {
-                    r_type: ResouceProduction(
+                    r_type: ResourceProduction(
                         r_type, resource_productions_inits, is_global=False
                     )
                     for r_type in RESOURCE_LIST
@@ -32,7 +32,7 @@ class BasePlayer:
                 resource_productions_inits
             ) == len(RESOURCE_LIST):
                 self.resource_production = {
-                    r_type: ResouceProduction(r_type, r_init, is_global=False)
+                    r_type: ResourceProduction(r_type, r_init, is_global=False)
                     for r_type, r_init in zip(
                         RESOURCE_LIST, resource_productions_inits
                     )
@@ -41,7 +41,7 @@ class BasePlayer:
                 raise ValueError("incorrect Player init")
         else:
             self.resource_production = [
-                ResouceProduction(r_type, 0, is_global=False)
+                ResourceProduction(r_type, 0, is_global=False)
                 for r_type in RESOURCE_LIST
             ]
         if resource_inits:
@@ -60,3 +60,5 @@ class BasePlayer:
                 raise ValueError("incorrect Player init")
         else:
             self.resources = {r_type: 0 for r_type in RESOURCE_LIST}
+            
+    
