@@ -6,8 +6,8 @@
 		"context": "..",
 		"dockerfile": "../Dockerfile"
 	},
-	"workspaceMount": "source=${localWorkspaceFolder},target=/app,type=bind",
-	"workspaceFolder": "/app",
+	"workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
+	"workspaceFolder": "/workspace",
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	"customizations": {
 		// Configure properties specific to VS Code.

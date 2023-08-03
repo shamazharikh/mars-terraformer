@@ -1,6 +1,6 @@
 {
     "[python]": {
-        "editor.defaultFormatter": "ms-python.black-formatter"
+        "editor.defaultFormatter": "ms-python.isort"
     },
     "python.formatting.provider": "none",
     "editor.formatOnSave": true,
@@ -20,5 +20,6 @@
     "isort.check": true,
     "editor.codeActionsOnSave": {
         "source.organizeImports": true
-    }
+    },
+    "files.autoSave": "afterDelay"
 }
