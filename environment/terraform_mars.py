@@ -22,12 +22,18 @@ class TerraformMars(gym.Env):
     }
 
     def __init__(self, render_mode=None, game_version="base", num_players=5):
-
         self.render_mode = render_mode
         self.game_version = game_version
         self.board = BaseBoard(self.game_version)
-        self.players = [BasePlayer(terraforming_rating=20) for i in range(num_players)]
-    
+        self.players = {
+            i: BasePlayer(
+                terraforming_rating=14,
+                resource_inits=0,
+                resource_productions_inits=0,
+            )
+            for i in range(num_players)
+        }
+
     def render(self) -> None:
         pass
 

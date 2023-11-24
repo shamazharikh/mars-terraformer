@@ -19,13 +19,14 @@ class ResourceType(IntEnum):
     POWER = 5
     HEAT = 6
 
+
 RESOURCE_LIST = [
     ResourceType.MEGACREDIT,
     ResourceType.STEEL,
     ResourceType.TITANIUM,
     ResourceType.PLANT,
     ResourceType.POWER,
-    ResourceType.HEAT
+    ResourceType.HEAT,
 ]
 
 
@@ -39,7 +40,7 @@ class ConditionalResource:
 
 
 @dataclass
-class ResouceProduction:
+class ResourceProduction:
     """
     Resource Production
     """
