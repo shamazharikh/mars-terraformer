@@ -16,7 +16,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   build:
-    runs-on: self-hosted
+    runs-on: ubuntu
 
     steps:
       # See here:
